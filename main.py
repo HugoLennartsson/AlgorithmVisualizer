@@ -1,4 +1,4 @@
-from view.window import run 
+from view.window import Window
 
 if __name__ == "__main__":
-    run()
+    Window().run()

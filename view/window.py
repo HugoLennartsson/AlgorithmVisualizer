@@ -1,6 +1,8 @@
 import pygame
 import sys
 from view.barChart import BarChart
+from model.random_values import RandomValues
+
 class Window:
     def __init__(self):
         pygame.init()
@@ -12,11 +14,11 @@ class Window:
         self.running = True
 
         self.BarChart = BarChart(
-            values=[10,40,25,60,80,30],
+            values= RandomValues.generate_array(20),
             x=50,
             y=50,
             width=700,
-            height = 500
+            height = 600
         )
     
          

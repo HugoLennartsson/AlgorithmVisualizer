@@ -2,6 +2,7 @@ import pygame
 import sys
 from view.barChart import BarChart
 from model.random_values import RandomValues
+from model.insertion_sort import InsertionSort
 
 class Window:
     def __init__(self):
@@ -12,6 +13,9 @@ class Window:
         pygame.display.set_caption("Algorithm Visualizer")
         self.clock = pygame.time.Clock()
         self.running = True
+        self.sort_index = 1
+        self.sorting = True
+       
 
         self.BarChart = BarChart(
             values= RandomValues.generate_array(20),
@@ -20,14 +24,16 @@ class Window:
             width=700,
             height = 600
         )
+        self.insertionSorter = InsertionSort(self.BarChart.values)
     
          
 
     def run(self):
         while self.running:
             self.handle_events()
+            self.update_sort()
             self.draw()
-            self.clock.tick(60)
+            self.clock.tick(10)
         pygame.quit()
         sys.exit()
 
@@ -40,3 +46,8 @@ class Window:
         self.screen.fill((30,30,30))
         self.BarChart.draw(self.screen)
         pygame.display.flip()
+
+    def update_sort(self):
+        if self.insertionSorter and not self.insertionSorter.finished:
+            self.insertionSorter.step()
+            self.BarChart.active_indices = self.insertionSorter.active_indices

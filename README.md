@@ -51,9 +51,3 @@ An interactive GUI application designed to visualize common sorting algorithms i
 * **`3`**: Switch to Selection Sort
 * **`4`**: Switch to Quicksort
 * **`R`**: Restart current algorithm with new random data
-
-## Project Structure
-
-* `main.py`: Entry point of the application.
-* `view/`: Contains rendering logic (`barChart.py`, `window.py`).
-* `model/`: Contains algorithm implementations and data generation (`sorter.py`, `bubble_sort.py`, `insertion_sort.py`, `random_values.py`).

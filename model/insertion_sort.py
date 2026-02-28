@@ -6,6 +6,10 @@ class InsertionSort(Sorter):
         self.i = 1  
         self.finished = False
         self.active_indices = set()
+        self._name = "Insertion Sort"
+
+    @property
+    def name(self): return self._name
 
     def step(self):
         self.active_indices.clear()

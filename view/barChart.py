@@ -21,14 +21,13 @@ class BarChart:
         self.active_indices = set()
     
     def draw(self, surface):
-        if not self.values:
-            return
-        
-        max_value = max(self.values)
+        if not self.values: return
+        max_val = max(self.values) if max(self.values) > 0 else 1
+
         bar_width = self.rect.width // len(self.values)
 
         for i, value in enumerate(self.values):
-            bar_height = int((value/max_value)* self.rect.height)
+            bar_height = int((value/max_val)* self.rect.height)
 
             x = self.rect.x + i * bar_width
             y = self.rect.y + self.rect.height - bar_height

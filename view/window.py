@@ -4,6 +4,8 @@ from view.barChart import BarChart
 from model.random_values import RandomValues
 from model.insertion_sort import InsertionSort
 from model.bubble_sort import BubbleSort
+from model.selection_sort import SelectionSort
+from model.quick_sort import QuickSort
 
 class Window:
     def __init__(self):
@@ -52,6 +54,10 @@ class Window:
                     self.change_strategy(InsertionSort)
                 elif event.key == pygame.K_2:
                     self.change_strategy(BubbleSort)
+                elif event.key == pygame.K_3:
+                    self.change_strategy(SelectionSort)
+                elif event.key == pygame.K_4:
+                    self.change_strategy(QuickSort)
                 elif event.key == pygame.K_r:
                     # Restart 
                     self.change_strategy(self.sorter.__class__)

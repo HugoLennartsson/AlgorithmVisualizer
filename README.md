@@ -30,7 +30,7 @@ An interactive GUI application designed to visualize common sorting algorithms i
 
 1.  **Clone the repository**:
     ```bash
-    git clone <repository-url>
+    git clone https://github.com/HugoLennartsson/AlgorithmVisualizer.git
     cd AlgorithmVisualizer
     ```
 

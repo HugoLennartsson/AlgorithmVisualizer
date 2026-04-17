@@ -5,6 +5,8 @@ class Sorter(ABC):
         self.values = values
         self.finished = False
         self.active_indices = set()
+        self.swap_indices = set()
+        self.pivot_index = -1
         self.comparisons = 0
         self.swaps = 0
 

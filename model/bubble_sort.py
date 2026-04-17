@@ -17,10 +17,12 @@ class BubbleSort(Sorter):
             self.finished = True
             return
 
-        self.active_indices = {self.j,self.j+1}
-        self.comparisons += 1 
+        self.active_indices = {self.j, self.j + 1}
+        self.swap_indices.clear()
+        self.comparisons += 1
 
         if self.values[self.j] > self.values[self.j + 1]:
+            self.swap_indices = {self.j, self.j + 1}
             self.values[self.j], self.values[self.j + 1] = self.values[self.j + 1], self.values[self.j]
             self.swaps += 1
 

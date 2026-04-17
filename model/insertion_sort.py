@@ -13,6 +13,7 @@ class InsertionSort(Sorter):
 
     def step(self):
         self.active_indices.clear()
+        self.swap_indices.clear()
 
         if self.finished:
             return
@@ -21,9 +22,10 @@ class InsertionSort(Sorter):
             self.finished = True
             return
 
-        self.active_indices.update({self.i, self.i-1})
-        
+        self.active_indices = {self.i, self.i - 1}
+
         if self.i > 0 and self.values[self.i] < self.values[self.i - 1]:
+            self.swap_indices = {self.i, self.i - 1}
             self.values[self.i], self.values[self.i - 1] = (
                 self.values[self.i - 1],
                 self.values[self.i],

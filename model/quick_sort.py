@@ -20,29 +20,34 @@ class QuickSort(Sorter):
         if self.finished:
             return
 
+        self.active_indices.clear()
+        self.swap_indices.clear()
+
         if self.state == "START_PARTITION":
             if not self.stack:
                 self.finished = True
                 self.active_indices.clear()
                 return
-            
+
             self.low, self.high = self.stack.pop()
             if self.low >= self.high:
                 return
 
             self.pivot_idx = self.high
+            self.pivot_index = self.high
             self.i = self.low - 1
             self.partition_idx = self.low
             self.state = "PARTITIONING"
-            self.active_indices = {self.pivot_idx, self.partition_idx}
+            self.active_indices = {self.partition_idx}
 
         elif self.state == "PARTITIONING":
-            self.active_indices = {self.pivot_idx, self.partition_idx, self.i}
+            self.active_indices = {self.partition_idx, self.pivot_index}
             self.comparisons += 1
 
             if self.partition_idx < self.high:
                 if self.values[self.partition_idx] < self.values[self.pivot_idx]:
                     self.i += 1
+                    self.swap_indices = {self.i, self.partition_idx}
                     self.values[self.i], self.values[self.partition_idx] = (
                         self.values[self.partition_idx],
                         self.values[self.i],
@@ -50,13 +55,15 @@ class QuickSort(Sorter):
                     self.swaps += 1
                 self.partition_idx += 1
             else:
+                self.swap_indices = {self.i + 1, self.high}
                 self.values[self.i + 1], self.values[self.high] = (
                     self.values[self.high],
                     self.values[self.i + 1],
                 )
                 self.swaps += 1
-                
+
                 pi = self.i + 1
                 self.stack.append((self.low, pi - 1))
                 self.stack.append((pi + 1, self.high))
                 self.state = "START_PARTITION"
+                self.pivot_index = -1

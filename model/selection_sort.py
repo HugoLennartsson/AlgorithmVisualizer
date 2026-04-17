@@ -17,9 +17,11 @@ class SelectionSort(Sorter):
         if self.i >= n - 1:
             self.finished = True
             self.active_indices.clear()
+            self.swap_indices.clear()
             return
 
         self.active_indices = {self.i, self.j, self.min_idx}
+        self.swap_indices.clear()
         self.comparisons += 1
 
         if self.values[self.j] < self.values[self.min_idx]:
@@ -27,16 +29,17 @@ class SelectionSort(Sorter):
 
         self.j += 1
 
-      
+
         if self.j >= n:
-       
+
+            self.swap_indices = {self.i, self.min_idx}
             self.values[self.i], self.values[self.min_idx] = (
                 self.values[self.min_idx],
                 self.values[self.i],
             )
             self.swaps += 1
-            
-      
+
+
             self.i += 1
             self.j = self.i + 1
             self.min_idx = self.i
